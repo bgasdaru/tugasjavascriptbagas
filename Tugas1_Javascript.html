@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1 - JavaScript</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f3f6fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #315f8c;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            text-align: center;
+            color: #315f8c;
+            margin-top: 0;
+        }
+
+        .shape {
+            height: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Bentuk persegi panjang */
+        .rectangle {
+            width: 150px;
+            height: 80px;
+            background-color: #79a9d6;
+            border: 3px solid #315f8c;
+        }
+
+        /* Bentuk bujur sangkar */
+        .square {
+            width: 100px;
+            height: 100px;
+            background-color: #91c788;
+            border: 3px solid #38761d;
+        }
+
+        /* Bentuk segitiga */
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 65px solid transparent;
+            border-right: 65px solid transparent;
+            border-bottom: 110px solid #e6a15c;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 11px;
+            border: none;
+            border-radius: 6px;
+            background-color: #315f8c;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #24496d;
+        }
+
+        .hasil {
+            margin-top: 15px;
+            padding: 12px;
+            text-align: center;
+            background-color: #edf4fa;
+            border-radius: 6px;
+            color: #315f8c;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            background-color: #315f8c;
+            color: white;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Bagian header halaman -->
+    <header>
+        <h1>Kalkulator Luas Bangun Datar</h1>
+        <p>Persegi Panjang, Bujur Sangkar, dan Segitiga</p>
+    </header>
+
+
+    <div class="container">
+
+        <div class="cards">
+
+            <!-- ================= PERSEGI PANJANG ================= -->
+            <div class="card">
+                <h2>Persegi Panjang</h2>
+
+                <div class="shape">
+                    <div class="rectangle"></div>
+                </div>
+
+                <label for="panjang">Panjang</label>
+                <input type="number" id="panjang" placeholder="Masukkan panjang">
+
+                <label for="lebar">Lebar</label>
+                <input type="number" id="lebar" placeholder="Masukkan lebar">
+
+                <button onclick="tampilkanPersegiPanjang()">
+                    Hitung Luas
+                </button>
+
+                <div class="hasil" id="hasilPersegiPanjang">
+                    Hasil: -
+                </div>
+            </div>
+
+
+            <!-- ================= BUJUR SANGKAR ================= -->
+            <div class="card">
+                <h2>Bujur Sangkar</h2>
+
+                <div class="shape">
+                    <div class="square"></div>
+                </div>
+
+                <label for="sisi">Sisi</label>
+                <input type="number" id="sisi" placeholder="Masukkan sisi">
+
+                <button onclick="tampilkanBujurSangkar()">
+                    Hitung Luas
+                </button>
+
+                <div class="hasil" id="hasilBujurSangkar">
+                    Hasil: -
+                </div>
+            </div>
+
+
+            <!-- ================= SEGITIGA ================= -->
+            <div class="card">
+                <h2>Segitiga</h2>
+
+                <div class="shape">
+                    <div class="triangle"></div>
+                </div>
+
+                <label for="alas">Alas</label>
+                <input type="number" id="alas" placeholder="Masukkan alas">
+
+                <label for="tinggi">Tinggi</label>
+                <input type="number" id="tinggi" placeholder="Masukkan tinggi">
+
+                <button onclick="tampilkanSegitiga()">
+                    Hitung Luas
+                </button>
+
+                <div class="hasil" id="hasilSegitiga">
+                    Hasil: -
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Bagian footer halaman -->
+    <footer>
+        Tugas 1 JavaScript
+    </footer>
+
+
+    <script>
+
+        /*
+         * Fungsi untuk menghitung luas persegi panjang.
+         *
+         * Parameter:
+         * - panjang : nilai panjang persegi panjang.
+         * - lebar   : nilai lebar persegi panjang.
+         *
+         * Rumus:
+         * Luas = panjang × lebar.
+         *
+         * Fungsi mengembalikan hasil perhitungan luas.
+         */
+        function luasPersegiPanjang(panjang, lebar) {
+            return panjang * lebar;
+        }
+
+
+        /*
+         * Fungsi untuk menghitung luas bujur sangkar.
+         *
+         * Parameter:
+         * - sisi : nilai panjang sisi bujur sangkar.
+         *
+         * Rumus:
+         * Luas = sisi × sisi.
+         *
+         * Fungsi mengembalikan hasil perhitungan luas.
+         */
+        function luasBujurSangkar(sisi) {
+            return sisi * sisi;
+        }
+
+
+        /*
+         * Fungsi untuk menghitung luas segitiga.
+         *
+         * Parameter:
+         * - alas   : nilai alas segitiga.
+         * - tinggi : nilai tinggi segitiga.
+         *
+         * Rumus:
+         * Luas = 1/2 × alas × tinggi.
+         *
+         * Fungsi mengembalikan hasil perhitungan luas.
+         */
+        function luasSegitiga(alas, tinggi) {
+            return 0.5 * alas * tinggi;
+        }
+
+
+        /*
+         * Fungsi untuk mengambil nilai panjang dan lebar
+         * dari input HTML, kemudian menghitung dan
+         * menampilkan luas persegi panjang.
+         */
+        function tampilkanPersegiPanjang() {
+
+            // Mengambil nilai panjang dari input.
+            let panjang = Number(document.getElementById("panjang").value);
+
+            // Mengambil nilai lebar dari input.
+            let lebar = Number(document.getElementById("lebar").value);
+
+            // Menghitung luas menggunakan fungsi luasPersegiPanjang().
+            let hasil = luasPersegiPanjang(panjang, lebar);
+
+            // Menampilkan hasil perhitungan ke halaman.
+            document.getElementById("hasilPersegiPanjang").innerHTML =
+                "Luas = " + hasil + " satuan²";
+        }
+
+
+        /*
+         * Fungsi untuk mengambil nilai sisi dari input HTML,
+         * kemudian menghitung dan menampilkan luas bujur sangkar.
+         */
+        function tampilkanBujurSangkar() {
+
+            // Mengambil nilai sisi dari input.
+            let sisi = Number(document.getElementById("sisi").value);
+
+            // Menghitung luas menggunakan fungsi luasBujurSangkar().
+            let hasil = luasBujurSangkar(sisi);
+
+            // Menampilkan hasil perhitungan ke halaman.
+            document.getElementById("hasilBujurSangkar").innerHTML =
+                "Luas = " + hasil + " satuan²";
+        }
+
+
+        /*
+         * Fungsi untuk mengambil nilai alas dan tinggi
+         * dari input HTML, kemudian menghitung dan
+         * menampilkan luas segitiga.
+         */
+        function tampilkanSegitiga() {
+
+            // Mengambil nilai alas dari input.
+            let alas = Number(document.getElementById("alas").value);
+
+            // Mengambil nilai tinggi dari input.
+            let tinggi = Number(document.getElementById("tinggi").value);
+
+            // Menghitung luas menggunakan fungsi luasSegitiga().
+            let hasil = luasSegitiga(alas, tinggi);
+
+            // Menampilkan hasil perhitungan ke halaman.
+            document.getElementById("hasilSegitiga").innerHTML =
+                "Luas = " + hasil + " satuan²";
+        }
+
+    </script>
+
+</body>
+</html>
+
