@@ -1,0 +1,1085 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DaruStore - Toko Elektronik</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f6f8fb;
+            color: #172033;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            width: 100%;
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: #315f8c;
+        }
+
+        .logo span {
+            color: #f28c28;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #315f8c;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            background: #315f8c;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 8%;
+            background: linear-gradient(120deg, #eef5fb, #ffffff);
+            gap: 40px;
+        }
+
+        .hero-text {
+            max-width: 570px;
+        }
+
+        .hero-label {
+            color: #f28c28;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #172033;
+        }
+
+        .hero h1 span {
+            color: #315f8c;
+        }
+
+        .hero p {
+            color: #687386;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .hero-button {
+            display: inline-block;
+            text-decoration: none;
+            background: #315f8c;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .hero-button.secondary {
+            background: white;
+            color: #315f8c;
+            border: 1px solid #315f8c;
+        }
+
+        .hero-product {
+            width: 370px;
+            height: 370px;
+            background: #315f8c;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 20px 45px rgba(49, 95, 140, 0.2);
+        }
+
+        .hero-product .circle {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 95px;
+        }
+
+        .sale-badge {
+            position: absolute;
+            right: -15px;
+            top: 25px;
+            background: #f28c28;
+            color: white;
+            padding: 12px 17px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title small {
+            color: #f28c28;
+            font-weight: bold;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin-top: 8px;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+            color: #737d8c;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #eeeeee;
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #737d8c;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #eeeeee;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            height: 150px;
+            background: #edf3f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .product-info {
+            padding: 17px;
+        }
+
+        .product-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: #315f8c;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .delete-button {
+            width: 100%;
+            padding: 8px;
+            background: #fff0f0;
+            color: #d44d4d;
+            border: 1px solid #ffd4d4;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background: #d44d4d;
+            color: white;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .management {
+            background: #eef5fb;
+        }
+
+        .form-box {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d8dce2;
+            border-radius: 7px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            border-color: #315f8c;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-add {
+            background: #315f8c;
+            color: white;
+        }
+
+        .btn-show {
+            background: #f1f1f1;
+            color: #333;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #172033;
+            color: white;
+            padding: 45px 8% 25px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 35px;
+        }
+
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-brand h2 {
+            margin-bottom: 12px;
+        }
+
+        .footer-brand span {
+            color: #f28c28;
+        }
+
+        .footer-brand p {
+            color: #adb6c5;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .footer-contact h3 {
+            margin-bottom: 12px;
+        }
+
+        .footer-contact p {
+            color: #adb6c5;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            border-top: 1px solid #30394b;
+            padding-top: 20px;
+            text-align: center;
+            color: #8993a5;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .product-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero-product {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 750px) {
+
+            nav {
+                padding: 0 5%;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .product-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-product {
+                width: 250px;
+                height: 250px;
+            }
+
+            .hero-product .circle {
+                width: 160px;
+                height: 160px;
+                font-size: 70px;
+            }
+
+            .hero-button {
+                display: block;
+                margin: 8px 0;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            Daru<span>Store</span>
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#produk">Produk</a></li>
+            <li><a href="#keunggulan">Keunggulan</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+
+        <a href="#kelola" class="nav-button">
+            Kelola Produk
+        </a>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO / LANDING PAGE
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+
+            <div class="hero-label">
+                TOKO ELEKTRONIK ONLINE
+            </div>
+
+            <h1>
+                Teknologi Untuk
+                <span>Kebutuhanmu.</span>
+            </h1>
+
+            <p>
+                Temukan berbagai produk elektronik pilihan dengan
+                kualitas terbaik dan harga yang bersahabat.
+                Belanja lebih mudah dan praktis bersama DaruStore.
+            </p>
+
+            <a href="#produk" class="hero-button">
+                Lihat Produk
+            </a>
+
+            <a href="#kelola" class="hero-button secondary">
+                Kelola Produk
+            </a>
+
+        </div>
+
+
+        <div class="hero-product">
+
+            <div class="circle">
+                💻
+            </div>
+
+            <div class="sale-badge">
+                BEST SELLER
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         KEUNGGULAN
+    ========================== -->
+
+    <section class="section" id="keunggulan">
+
+        <div class="section-title">
+
+            <small>KENAPA DARUSTORE?</small>
+
+            <h2>Belanja Lebih Mudah</h2>
+
+            <p>
+                Kami memberikan pengalaman belanja yang sederhana
+                dan nyaman.
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">🚚</div>
+
+                <h3>Pengiriman Cepat</h3>
+
+                <p>
+                    Produk dikirim dengan cepat setelah proses
+                    pembelian selesai.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">🛡️</div>
+
+                <h3>Produk Berkualitas</h3>
+
+                <p>
+                    Kami menyediakan berbagai produk elektronik
+                    yang berkualitas.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">💳</div>
+
+                <h3>Pembayaran Mudah</h3>
+
+                <p>
+                    Proses pembelian dibuat sederhana agar
+                    pelanggan lebih nyaman.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUK
+    ========================== -->
+
+    <section class="section" id="produk">
+
+        <div class="section-title">
+
+            <small>KOLEKSI PRODUK</small>
+
+            <h2>Produk Pilihan</h2>
+
+            <p>
+                Beberapa produk yang tersedia di DaruStore.
+            </p>
+
+        </div>
+
+
+        <!-- Produk akan dimasukkan JavaScript -->
+
+        <div id="daftarProduk" class="product-container"></div>
+
+    </section>
+
+
+    <!-- =========================
+         KELOLA PRODUK
+    ========================== -->
+
+    <section class="section management" id="kelola">
+
+        <div class="section-title">
+
+            <small>MANAJEMEN PRODUK</small>
+
+            <h2>Tambah Produk</h2>
+
+            <p>
+                Tambahkan produk baru ke dalam daftar toko.
+            </p>
+
+        </div>
+
+
+        <div class="form-box">
+
+            <div class="form-group">
+
+                <label for="namaProduk">
+                    Nama Produk
+                </label>
+
+                <input
+                    type="text"
+                    id="namaProduk"
+                    placeholder="Contoh: Smartwatch"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="hargaProduk">
+                    Harga Produk
+                </label>
+
+                <input
+                    type="number"
+                    id="hargaProduk"
+                    placeholder="Contoh: 850000"
+                >
+
+            </div>
+
+
+            <div class="form-buttons">
+
+                <button
+                    class="btn btn-add"
+                    id="btnTambah"
+                >
+                    + Tambah Produk
+                </button>
+
+
+                <button
+                    class="btn btn-show"
+                    id="btnTampil"
+                >
+                    Tampilkan Semua
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer id="kontak">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <h2>
+                    Daru<span>Store</span>
+                </h2>
+
+                <p>
+                    Toko elektronik online sederhana yang menyediakan
+                    berbagai kebutuhan teknologi untuk aktivitas
+                    sehari-hari.
+                </p>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <h3>Kontak</h3>
+
+                <p>📧 Email: darustore@gmail.com</p>
+
+                <p>📱 WhatsApp: 0812-3456-7890</p>
+
+                <p>📍 Jakarta, Indonesia</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 DaruStore. Tugas 5 JavaScript.
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+
+        // ==========================================
+        // DATA PRODUK AWAL
+        // Minimal 5 produk sesuai tugas
+        // ==========================================
+
+        let produk = [
+
+            {
+                id: 1,
+                nama: "Laptop",
+                harga: 7500000,
+                icon: "💻"
+            },
+
+            {
+                id: 2,
+                nama: "Mouse Wireless",
+                harga: 250000,
+                icon: "🖱️"
+            },
+
+            {
+                id: 3,
+                nama: "Keyboard",
+                harga: 450000,
+                icon: "⌨️"
+            },
+
+            {
+                id: 4,
+                nama: "Headset",
+                harga: 350000,
+                icon: "🎧"
+            },
+
+            {
+                id: 5,
+                nama: "Webcam",
+                harga: 600000,
+                icon: "📷"
+            }
+
+        ];
+
+
+        // ==========================================
+        // REST PARAMETER
+        // ==========================================
+
+        /*
+            Rest Parameter (...) digunakan untuk
+            menerima beberapa parameter sekaligus.
+
+            Parameter yang diterima akan dikumpulkan
+            menjadi sebuah array bernama dataProduk.
+        */
+
+        function buatProduk(...dataProduk) {
+
+            const [id, nama, harga, icon] = dataProduk;
+
+            return {
+                id: id,
+                nama: nama,
+                harga: harga,
+                icon: icon
+            };
+
+        }
+
+
+        // ==========================================
+        // DESTRUCTURING
+        // ==========================================
+
+        function tampilkanProduk() {
+
+            const daftarProduk =
+                document.getElementById("daftarProduk");
+
+            daftarProduk.innerHTML = "";
+
+
+            produk.forEach((item) => {
+
+                /*
+                    Destructuring digunakan untuk mengambil
+                    beberapa property dari object produk.
+                */
+
+                const {
+                    id,
+                    nama,
+                    harga,
+                    icon
+                } = item;
+
+
+                const card =
+                    document.createElement("div");
+
+                card.classList.add("product-card");
+
+
+                card.innerHTML = `
+
+                    <div class="product-image">
+                        ${icon}
+                    </div>
+
+                    <div class="product-info">
+
+                        <h3>${nama}</h3>
+
+                        <div class="product-price">
+                            Rp ${harga.toLocaleString("id-ID")}
+                        </div>
+
+                        <button
+                            class="delete-button"
+                            onclick="hapusProduk(${id})"
+                        >
+                            Hapus Produk
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                daftarProduk.appendChild(card);
+
+            });
+
+        }
+
+
+        // ==========================================
+        // TAMBAH PRODUK
+        // SPREAD OPERATOR
+        // ==========================================
+
+        function tambahProduk() {
+
+            const nama =
+                document.getElementById("namaProduk").value.trim();
+
+            const harga =
+                Number(
+                    document.getElementById("hargaProduk").value
+                );
+
+
+            if (nama === "" || harga <= 0) {
+
+                alert(
+                    "Nama dan harga produk harus diisi dengan benar!"
+                );
+
+                return;
+
+            }
+
+
+            /*
+                Membuat ID baru berdasarkan
+                ID produk terakhir.
+            */
+
+            const idBaru =
+                produk.length > 0
+                    ? produk[produk.length - 1].id + 1
+                    : 1;
+
+
+            /*
+                Membuat object produk baru
+                menggunakan fungsi dengan Rest Parameter.
+            */
+
+            const dataBaru =
+                buatProduk(
+                    idBaru,
+                    nama,
+                    harga,
+                    "📦"
+                );
+
+
+            /*
+                Spread Operator digunakan untuk
+                menggabungkan array produk lama
+                dengan produk baru.
+            */
+
+            produk = [
+                ...produk,
+                dataBaru
+            ];
+
+
+            // Mengosongkan input setelah produk ditambahkan.
+
+            document.getElementById("namaProduk").value = "";
+
+            document.getElementById("hargaProduk").value = "";
+
+
+            // Menampilkan data terbaru.
+
+            tampilkanProduk();
+
+
+            alert(
+                "Produk berhasil ditambahkan!"
+            );
+
+        }
+
+
+        // ==========================================
+        // HAPUS PRODUK
+        // ==========================================
+
+        function hapusProduk(id) {
+
+            const konfirmasi =
+                confirm(
+                    "Apakah Anda yakin ingin menghapus produk ini?"
+                );
+
+
+            if (!konfirmasi) {
+                return;
+            }
+
+
+            produk =
+                produk.filter(
+                    (item) => item.id !== id
+                );
+
+
+            tampilkanProduk();
+
+        }
+
+
+        // ==========================================
+        // EVENT LISTENER
+        // ==========================================
+
+        /*
+            Event Listener digunakan untuk
+            menjalankan fungsi ketika tombol
+            diklik oleh pengguna.
+        */
+
+        document
+            .getElementById("btnTambah")
+            .addEventListener(
+                "click",
+                tambahProduk
+            );
+
+
+        document
+            .getElementById("btnTampil")
+            .addEventListener(
+                "click",
+                tampilkanProduk
+            );
+
+
+        // ==========================================
+        // TAMPILKAN PRODUK SAAT HALAMAN DIBUKA
+        // ==========================================
+
+        tampilkanProduk();
+
+
+    </script>
+
+</body>
+</html>
+
