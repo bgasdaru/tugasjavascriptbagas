@@ -1,10 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopEase - Manajemen Produk</title>
+
+    <title>Data Pengguna</title>
 
     <style>
         * {
@@ -15,242 +16,134 @@
         }
 
         body {
-            background: #f5f7fb;
-            color: #1f2937;
+            background: #f4f6f9;
+            color: #333;
         }
 
-        /* NAVBAR */
-        nav {
-            background: #111827;
+        .header {
+            background: #315f8c;
             color: white;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 25px 8%;
         }
 
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
         }
 
-        .logo span {
-            color: #8b5cf6;
+        .header p {
+            opacity: 0.9;
         }
 
-        .nav-text {
-            color: #d1d5db;
-            font-size: 14px;
-        }
-
-        /* HERO */
-        .hero {
-            padding: 55px 8%;
-            background: linear-gradient(135deg, #111827, #312e81);
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 12px;
-        }
-
-        .hero p {
-            color: #d1d5db;
-            max-width: 600px;
-            line-height: 1.6;
-        }
-
-        /* CONTAINER */
         .container {
             width: 84%;
-            max-width: 1200px;
-            margin: 35px auto;
+            margin: 30px auto;
         }
 
-        /* STATISTICS */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 35px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 22px;
-            border-radius: 16px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-        }
-
-        .stat-card p {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .stat-card h2 {
-            font-size: 28px;
-            color: #111827;
-        }
-
-        /* SECTION HEADER */
-        .section-header {
+        .top-section {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
 
-        .section-header h2 {
-            font-size: 25px;
+        .top-section h2 {
+            color: #315f8c;
         }
 
-        /* PRODUCT GRID */
-        #daftarProduk {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
+        .btn-tambah {
+            background: #315f8c;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-        .product-card {
+        .btn-tambah:hover {
+            background: #244a6d;
+        }
+
+        .card {
             background: white;
             padding: 22px;
-            border-radius: 18px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-            transition: 0.3s;
-            position: relative;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.10);
-        }
-
-        .product-icon {
-            width: 55px;
-            height: 55px;
-            background: #ede9fe;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 25px;
-            margin-bottom: 18px;
-        }
-
-        .product-card h3 {
-            font-size: 19px;
+        .card-title {
+            color: #666;
+            font-size: 14px;
             margin-bottom: 8px;
         }
 
-        .product-id {
-            font-size: 12px;
-            color: #9ca3af;
-            margin-bottom: 15px;
-        }
-
-        .price {
-            font-size: 20px;
+        .total {
+            font-size: 32px;
             font-weight: bold;
-            color: #7c3aed;
-            margin-bottom: 10px;
+            color: #315f8c;
         }
 
-        .stock {
-            color: #6b7280;
-            font-size: 14px;
-            margin-bottom: 18px;
+        .table-container {
+            overflow-x: auto;
         }
 
-        .delete-btn {
+        table {
             width: 100%;
-            border: none;
-            padding: 10px;
-            border-radius: 10px;
-            background: #fee2e2;
-            color: #dc2626;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
+            border-collapse: collapse;
+            margin-top: 5px;
         }
 
-        .delete-btn:hover {
-            background: #fecaca;
+        th {
+            background: #315f8c;
+            color: white;
+            padding: 14px;
+            text-align: left;
         }
 
-        /* ADD PRODUCT */
-        .form-section {
-            background: white;
-            margin-top: 40px;
-            padding: 25px;
-            border-radius: 18px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        td {
+            padding: 13px 14px;
+            border-bottom: 1px solid #ddd;
         }
 
-        .form-section h2 {
-            margin-bottom: 20px;
+        tr:hover {
+            background: #f5f8fb;
         }
 
-        .form {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr auto;
-            gap: 12px;
-        }
-
-        input {
-            padding: 12px;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #8b5cf6;
-        }
-
-        .add-btn {
-            background: #7c3aed;
+        .btn-hapus {
+            background: #dc3545;
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
+            padding: 7px 12px;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
         }
 
-        .add-btn:hover {
-            background: #6d28d9;
+        .btn-hapus:hover {
+            background: #b52a37;
         }
 
-        footer {
+        .footer {
             text-align: center;
-            padding: 30px;
-            color: #9ca3af;
+            padding: 25px;
+            color: #777;
             font-size: 14px;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 800px) {
-            .stats,
-            #daftarProduk {
-                grid-template-columns: 1fr;
-            }
-
-            .form {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            nav {
-                padding: 18px 5%;
-            }
-
+        @media (max-width: 700px) {
             .container {
-                width: 90%;
+                width: 94%;
+            }
+
+            .top-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .header {
+                padding: 25px 5%;
             }
         }
     </style>
@@ -258,83 +151,62 @@
 
 <body>
 
-    <nav>
-        <div class="logo">Shop<span>Ease</span></div>
-        <div class="nav-text">Product Management System</div>
-    </nav>
+    <div class="header">
+        <h1>Data Pengguna</h1>
+        <p>Website sederhana untuk mengelola data pengguna</p>
+    </div>
 
-    <section class="hero">
-        <h1>Kelola Produk Lebih Simpel.</h1>
-        <p>
-            Sistem manajemen produk sederhana untuk mengatur
-            daftar produk, harga, dan stok toko dengan mudah.
-        </p>
-    </section>
+    <div class="container">
 
-    <main class="container">
-
-        <!-- STATISTIK -->
-        <div class="stats">
-            <div class="stat-card">
-                <p>Total Produk</p>
-                <h2 id="totalProduk">0</h2>
+        <div class="top-section">
+            <div>
+                <h2>Daftar Pengguna</h2>
             </div>
 
-            <div class="stat-card">
-                <p>Total Stok</p>
-                <h2 id="totalStok">0</h2>
+            <button class="btn-tambah" onclick="tambahData()">
+                + Tambah 2 Data
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="card-title">
+                Total Data Pengguna
             </div>
 
-            <div class="stat-card">
-                <p>Status Toko</p>
-                <h2>Aktif ●</h2>
+            <div class="total" id="totalData">
+                0
             </div>
         </div>
 
-        <!-- DAFTAR PRODUK -->
-        <div class="section-header">
-            <h2>Daftar Produk</h2>
+        <div class="card table-container">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Umur</th>
+                        <th>Alamat</th>
+                        <th>Email</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabelData">
+                </tbody>
+            </table>
+
         </div>
 
-        <div id="daftarProduk"></div>
+    </div>
 
-        <!-- FORM TAMBAH PRODUK -->
-        <section class="form-section">
-            <h2>Tambah Produk Baru</h2>
+    <div class="footer">
+        Tugas Pertemuan 6 JavaScript
+    </div>
 
-            <div class="form">
-                <input
-                    type="text"
-                    id="namaProduk"
-                    placeholder="Nama produk"
-                >
-
-                <input
-                    type="number"
-                    id="hargaProduk"
-                    placeholder="Harga"
-                >
-
-                <input
-                    type="number"
-                    id="stokProduk"
-                    placeholder="Stok"
-                >
-
-                <button class="add-btn" onclick="tambahProdukDariForm()">
-                    + Tambah
-                </button>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        ShopEase © 2026 — Tugas Pertemuan 3 JavaScript
-    </footer>
-
-    <script src="script.js"></script>
+    <script src="data.js"></script>
+    <script src="controller.js"></script>
 
 </body>
+
 </html>
-```
